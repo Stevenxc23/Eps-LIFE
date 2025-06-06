@@ -14,10 +14,12 @@ Session(app)
 
 # Configurar conexión a la base de datos
 conn = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="",
-    database="eps"
+    conn = mysql.connector.connect(
+    host="db4free.net",
+    user="steven",
+    password="12345",
+    database="epsdb12"
+)
 )
 cursor = conn.cursor(dictionary=True)
 

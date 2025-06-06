@@ -2,5 +2,5 @@ db_config = {
     'host': 'localhost',
     'user': 'root',
     'password': '',
-    'database': 'eps'
+    'database': 'epsdb12'
 }
