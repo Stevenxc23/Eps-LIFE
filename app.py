@@ -16,9 +16,9 @@ Session(app)
 conn = mysql.connector.connect(
     conn = mysql.connector.connect(
     host="db4free.net",
-    user="steven",
-    password="steven1234",
-    database="epsdb12"
+    user="steven12",
+    password="steven123",
+    database="epsdb123"
 )
 )
 cursor = conn.cursor(dictionary=True)
