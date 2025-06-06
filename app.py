@@ -15,11 +15,18 @@ Session(app)
 # Configurar conexión a la base de datos
 conn = mysql.connector.connect(
     conn = mysql.connector.connect(
-    host="db4free.net",
-    user="steven12",
-    password="steven123",
+    host="localhost",
+    user="root",
+    password="",
     database="epsdb123"
 )
+app.config['MYSQL_HOST'] = os.environ.get('MYSQL_HOST', 'bsucb42iljitobieo4vw-mysql.services.clever-cloud.com')
+app.config['MYSQL_PORT'] = int(os.environ.get('MYSQL_PORT', 3306))
+app.config['MYSQL_USER'] = os.environ.get('MYSQL_USER', 'ugzgvvbhxeyshybv')
+app.config['MYSQL_PASSWORD'] = os.environ.get('MYSQL_PASSWORD', 'hrNujFPhiAVYz97TE9Yv')
+app.config['MYSQL_DB'] = os.environ.get('MYSQL_DB', 'bsucb42iljitobieo4vw')
+
+mysql = MySQL(app)
 )
 cursor = conn.cursor(dictionary=True)
 
