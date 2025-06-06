@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Agendar cita{% endblock %}
+
+{% block content %}
+<div class="mb-4">
+  <h4>¿Cómo agendar tu cita?</h4>
+  <ol>
+    <li>Selecciona la especialidad.</li>
+    <li>Escoge el médico disponible.</li>
+    <li>Elige la fecha y hora.</li>
+    <li>Haz clic en "Confirmar".</li>
+  </ol>
+  <p class="text-muted">Recuerda que solo puedes tener una cita activa por especialidad.</p>
+</div>
+
+<img src="/static/img/salud_agenda.jpg" class="img-fluid rounded shadow" alt="Agendar Cita">
+
+<div class="container mt-4">
+    <h2>Agendar Cita Médica</h2>
+    <form method="post">
+        <div class="mb-3">
+            <label for="medico" class="form-label">Médico:</label>
+            <select name="id_medico" id="medico" class="form-select" required>
+                {% for medico in medicos %}
+                    <option value="{{ medico.id }}">{{ medico.nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="fecha" class="form-label">Fecha:</label>
+            <input type="date" name="fecha" id="fecha" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="hora" class="form-label">Hora:</label>
+            <input type="time" name="hora" id="hora" class="form-control" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Agendar Cita</button>
+    </form>
+
+    <a href="{{ url_for('home') }}" class="btn btn-secondary mt-3">Volver</a>
+</div>
+{% endblock %}

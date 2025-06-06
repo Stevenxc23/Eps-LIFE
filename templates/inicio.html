@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+{% block title %}Inicio - EPS LIFE{% endblock %}
+
+{% block content %}
+<style>
+ html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.hero-section {
+  flex: 1 0 auto; /* crece y ocupa espacio disponible */
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background: linear-gradient(to right, #f0f2f5, #ffffff);
+}
+
+footer {
+  flex-shrink: 0; /* no se encoge */
+  background-color: #003366;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+}
+    .hero-img {
+        width: 100%;
+        max-height: 500px;
+        object-fit: cover;
+        border-radius: 12px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+    .section-title {
+        font-size: 3.2rem;
+        font-weight: 700;
+        color: #003366;
+    }
+
+    .section-subtitle {
+        font-size: 1.2rem;
+        color: #444;
+    }
+
+    .info-box {
+        background-color: #f1f1f1;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        height: 100%;
+    }
+
+    @media (max-width: 768px) {
+        .section-title {
+            font-size: 2rem;
+        }
+
+        .hero-section {
+            padding: 40px 0;
+        }
+    }
+</style>
+
+<!-- Sección principal tipo "hero" -->
+<div class="hero-section">
+    <div class="container-fluid px-5">
+        <div class="row align-items-center">
+            <!-- Texto -->
+            <div class="col-lg-6 mb-4 mb-lg-0 px-5">
+                <h1 class="section-title">Bienvenido a EPS LIFE</h1>
+                <p class="section-subtitle mt-3">
+                    Somos una Entidad Promotora de Salud comprometida con ofrecer servicios médicos integrales y eficientes mediante el uso de tecnologías modernas. Desde esta plataforma podrás gestionar tus citas médicas de manera fácil y rápida.
+                </p>
+                <ul class="mt-4">
+                    <li>✔️ Agendamiento de citas en línea</li>
+                    <li>✔️ Acceso al historial clínico</li>
+                    <li>✔️ Soporte personalizado</li>
+                    <li>✔️ Atención prioritaria</li>
+                </ul>
+                <div class="mt-4">
+                    <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg me-3">Iniciar Sesión</a>
+                    <a href="{{ url_for('registro') }}" class="btn btn-outline-secondary btn-lg">Crear Cuenta</a>
+                </div>
+            </div>
+
+            <!-- Imagen -->
+            <div class="col-lg-6 text-center">
+                <img src="{{ url_for('static', filename='images/epslife.jpg') }}" alt="EPS LIFE" class="hero-img">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Información adicional -->
+<section class="py-5">
+    <div class="container-fluid px-5">
+        <div class="row gy-4">
+            <div class="col-md-4">
+                <div class="info-box">
+                    <h3>Misión</h3>
+                    <p>
+                        Ofrecer servicios de salud con calidad, eficiencia y calidez humana, centrados en la prevención, el bienestar y la atención oportuna de nuestros afiliados, apoyados en tecnología de punta.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="info-box">
+                    <h3>Visión</h3>
+                    <p>
+                        Ser reconocida como la EPS líder en innovación y atención centrada en el paciente, con cobertura nacional y servicios integrales que mejoren la calidad de vida de la población.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="info-box">
+                    <h3>Servicios</h3>
+                    <ul>
+                        <li>Consultas médicas generales y especializadas</li>
+                        <li>Laboratorios y exámenes de diagnóstico</li>
+                        <li>Urgencias 24/7</li>
+                        <li>Promoción y prevención de enfermedades</li>
+                        <li>Telemedicina</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <p>&copy; 2025 EPS Salud Vital. Todos los derechos reservados.</p>
+        <p>Contacto: info@saludvital.com | Tel: 01 8000 123 456</p>
+    </div>
+</footer>
+{% endblock %}

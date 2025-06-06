@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block title %}Panel de Usuario{% endblock %}
+{% block content %}
+<div class="container py-5">
+  <h2 class="mb-4">Bienvenido, {{ session.get('rol') | capitalize }}</h2>
+
+  <!-- Información de usuario y última cita -->
+  <div class="row mt-4">
+    <div class="col-md-6">
+      <div class="card shadow-sm p-3">
+        <h5>Información de Usuario</h5>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Nombre: {{ usuario.nombre }}</li>
+          <li class="list-group-item">Correo: {{ usuario.correo }}</li>
+          <li class="list-group-item">Rol: {{ session.get('rol') }}</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card shadow-sm p-3">
+        <h5>Última Cita</h5>
+        {% if ultima_cita %}
+          <p><strong>Fecha:</strong> {{ ultima_cita.fecha }}</p>
+          <p><strong>Especialidad:</strong> {{ ultima_cita.especialidad }}</p>
+          <p><strong>Médico:</strong> Dr. {{ ultima_cita.medico }}</p>
+        {% else %}
+          <p>No hay citas agendadas.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Botones funcionales según rol -->
+  <div class="row g-4 mt-4">
+    {% if session.get('rol') == 'paciente' %}
+      <div class="col-md-4">
+        <a href="{{ url_for('agendar_cita') }}" class="text-decoration-none">
+          <div class="card text-white bg-primary shadow-sm h-100">
+            <div class="card-body d-flex flex-column justify-content-center align-items-center">
+              <i class="bi bi-calendar-plus fs-1 mb-3"></i>
+              <h5 class="card-title">Agendar Cita</h5>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a href="{{ url_for('ver_citas') }}" class="text-decoration-none">
+          <div class="card text-white bg-success shadow-sm h-100">
+            <div class="card-body d-flex flex-column justify-content-center align-items-center">
+              <i class="bi bi-journal-medical fs-1 mb-3"></i>
+              <h5 class="card-title">Mis Citas</h5>
+            </div>
+          </div>
+        </a>
+      </div>
+    {% elif session.get('rol') == 'medico' %}
+      <div class="col-md-4">
+        <a href="{{ url_for('configurar_horarios') }}" class="text-decoration-none">
+          <div class="card text-white bg-warning shadow-sm h-100">
+            <div class="card-body d-flex flex-column justify-content-center align-items-center">
+              <i class="bi bi-clock fs-1 mb-3"></i>
+              <h5 class="card-title">Configurar Horarios</h5>
+            </div>
+          </div>
+        </a>
+      </div>
+    {% elif session.get('rol') == 'admin' %}
+      <div class="col-md-4">
+        <a href="{{ url_for('dashboard_admin') }}" class="text-decoration-none">
+          <div class="card text-white bg-danger shadow-sm h-100">
+            <div class="card-body d-flex flex-column justify-content-center align-items-center">
+              <i class="bi bi-speedometer2 fs-1 mb-3"></i>
+              <h5 class="card-title">Dashboard Admin</h5>
+            </div>
+          </div>
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

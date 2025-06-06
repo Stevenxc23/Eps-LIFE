@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}Dashboard de Citas{% endblock %}
+{% block content %}
+<div class="container mt-4">
+
+  <!-- TÍTULO -->
+  <h2 class="mb-4">Panel de administración</h2>
+
+  <!-- TARJETAS -->
+  <div class="row mb-5">
+    <div class="col-md-4 mb-3">
+      <div class="card text-white bg-warning shadow">
+        <div class="card-body">
+          <h5 class="card-title">Citas Pendientes</h5>
+          <h2>{{ pendientes }}</h2>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <div class="card text-white bg-success shadow">
+        <div class="card-body">
+          <h5 class="card-title">Citas Confirmadas</h5>
+          <h2>{{ confirmadas }}</h2>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <div class="card text-white bg-danger shadow">
+        <div class="card-body">
+          <h5 class="card-title">Citas Canceladas</h5>
+          <h2>{{ canceladas }}</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABLA DE CITAS -->
+  <div class="card">
+    <div class="card-header">
+      <h5 class="mb-0">Registro de citas</h5>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Paciente</th>
+              <th>Médico</th>
+              <th>Fecha</th>
+              <th>Hora</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for cita in citas %}
+            <tr>
+              <td>{{ cita.id }}</td>
+              <td>{{ cita.nombre_paciente }}</td>
+              <td>{{ cita.nombre_medico }}</td>
+              <td>{{ cita.fecha }}</td>
+              <td>{{ cita.hora }}</td>
+              <td>{{ cita.estado }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<a href="{{ url_for('home') }}" class="btn btn-secondary mt-3">Volver al inicio</a>
+{% endblock %}
