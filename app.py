@@ -3,30 +3,22 @@ from flask import Flask, render_template, request, redirect, url_for, session
 from flask_session import Session
 from functools import wraps
 from fpdf import FPDF
-import mysql.connector
 from flask import make_response
 import datetime
+import mysql.connector  # <- Este es el correcto
 
 app = Flask(__name__)
 app.secret_key = 'clave_secreta'
 app.config['SESSION_TYPE'] = 'filesystem'
 Session(app)
 
-# Configurar conexión a la base de datos
+# Conexión a la base de datos con mysql.connector
 conn = mysql.connector.connect(
-    conn = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="",
-    database="epsdb123"
-)
-app.config['MYSQL_HOST'] = os.environ.get('MYSQL_HOST', 'bsucb42iljitobieo4vw-mysql.services.clever-cloud.com')
-app.config['MYSQL_PORT'] = int(os.environ.get('MYSQL_PORT', 3306))
-app.config['MYSQL_USER'] = os.environ.get('MYSQL_USER', 'ugzgvvbhxeyshybv')
-app.config['MYSQL_PASSWORD'] = os.environ.get('MYSQL_PASSWORD', 'hrNujFPhiAVYz97TE9Yv')
-app.config['MYSQL_DB'] = os.environ.get('MYSQL_DB', 'bsucb42iljitobieo4vw')
-
-mysql = MySQL(app)
+    host=os.environ.get('MYSQL_HOST', 'bsucb42iljitobieo4vw-mysql.services.clever-cloud.com'),
+    port=int(os.environ.get('MYSQL_PORT', 3306)),
+    user=os.environ.get('MYSQL_USER', 'ugzgvvbhxeyshybv'),
+    password=os.environ.get('MYSQL_PASSWORD', 'hrNujFPhiAVYz97TE9Yv'),
+    database=os.environ.get('MYSQL_DB', 'bsucb42iljitobieo4vw')
 )
 cursor = conn.cursor(dictionary=True)
 
